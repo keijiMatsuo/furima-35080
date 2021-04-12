@@ -25,11 +25,11 @@
 | ------------------ | --------| ------------------------------ |
 | product_name       | string  | null: false                    |
 | description        | text    | null: false                    |
-| category_id        | string  | null: false                    |
-| status_id          | string  | null: false                    |
-| shipping_burden_id | string  | null: false                    |
-| shipping_area_id   | string  | null: false                    |
-| shipping_days_id   | string  | null: false                    |
+| category_id        | integer | null: false                    |
+| status_id          | integer | null: false                    |
+| shipping_burden_id | integer | null: false                    |
+| shipping_area_id   | integer | null: false                    |
+| shipping_days_id   | integer | null: false                    |
 | price              | integer | null: false                    |
 | user_id            | integer | null: false, foreign_key: true |
 
