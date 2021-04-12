@@ -41,10 +41,10 @@
 
 ## purchases テーブル
 
-| Column     | Type    | Options                        |
-| ---------- | ------- | ------------------------------ |
-| user_id    | integer | null: false, foreign_key: true |
-| listing_id | integer | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| listing | references | null: false, foreign_key: true |
 
 ### Association
 
