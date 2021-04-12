@@ -46,6 +46,17 @@
 | card_info      | string  | null: false                    |
 | deadline       | string  | null: false                    |
 | security_chord | string  | null: false                    |
+
+### Association
+
+- belongs_to :user
+- has_one    :delivery
+
+
+## deliverys テーブル
+
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
 | postal_code    | string  | null: false                    |
 | prefectures    | string  | null: false                    |
 | municipality   | string  | null: false                    |
@@ -55,7 +66,4 @@
 | user_id        | integer | null: false, foreign_key: true |
 | listings_id    | integer | null: false, foreign_key: true |
 
-### Association
-
-- belongs_to :user
-- belongs_to :listing
+- belongs_to :purchase
