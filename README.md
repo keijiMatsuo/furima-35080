@@ -41,11 +41,10 @@
 
 ## purchases テーブル
 
-| Column         | Type    | Options                        |
-| -------------- | ------- | ------------------------------ |
-| card_info      | string  | null: false                    |
-| deadline       | string  | null: false                    |
-| security_chord | string  | null: false                    |
+| Column     | Type    | Options                        |
+| ---------- | ------- | ------------------------------ |
+| user_id    | integer | null: false, foreign_key: true |
+| listing_id | integer | null: false, foreign_key: true |
 
 ### Association
 
