@@ -20,9 +20,9 @@ class Listing < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to       :category
-  belongs_to       :status
-  belongs_to       :shipping_burden
-  belongs_to       :prefectures
-  belongs_to       :shipping_days
+  belongs_to :category
+  belongs_to :status
+  belongs_to :shipping_burden
+  belongs_to :prefectures
+  belongs_to :shipping_days
 end
