@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def index
-
   end
 
   def new
@@ -20,7 +19,8 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:image, :product_name, :description, :category_id, :status_id, :shipping_burden_id, :prefectures_id, :shipping_days_id, :price)
-    .merge(user_id: current_user.id)
+    params.require(:listing).permit(:image, :product_name, :description, :category_id, :status_id, :shipping_burden_id,
+                                    :prefectures_id, :shipping_days_id, :price)
+          .merge(user_id: current_user.id)
   end
 end
