@@ -64,7 +64,7 @@ RSpec.describe Listing, type: :model do
         expect(@listing.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが¥300~¥9,999,999の範囲でないと登録できない(¥9,999,999以上)' do
-        @listing.price = 10000000
+        @listing.price = 10_000_000
         @listing.valid?
         expect(@listing.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
