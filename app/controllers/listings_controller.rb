@@ -1,8 +1,7 @@
 class ListingsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :set_listing,        only: [:show, :edit, :update]
-  before_action :move_to_new,        only: [:edit, :update]
-  before_action :move_to_index,      only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_listing,        only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index,      only: [:edit, :update, :destroy]
 
   def index
     @listings = Listing.all.order('created_at DESC')
@@ -22,7 +21,6 @@ class ListingsController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
@@ -41,6 +39,11 @@ class ListingsController < ApplicationController
     end
   end
 
+  def destroy
+    @listing.destroy
+    redirect_to root_path
+  end
+
   private
 
   def listing_params
@@ -53,15 +56,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
-  def move_to_new
-    unless user_signed_in?
-      redirect_to action: :new
-    end
-  end
-
   def move_to_index
-    unless current_user.id != @listing.user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index if current_user.id != @listing.user.id
   end
 end
