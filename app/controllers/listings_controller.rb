@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_listing,        only: [:show, :edit, :update, :destroy]
-  before_action :move_to_new,        only: [:edit, :update]
   before_action :move_to_index,      only: [:update, :destroy]
 
   def index
@@ -58,10 +57,6 @@ class ListingsController < ApplicationController
 
   def set_listing
     @listing = Listing.find(params[:id])
-  end
-
-  def move_to_new
-    redirect_to action: :new unless user_signed_in?
   end
 
   def move_to_index
