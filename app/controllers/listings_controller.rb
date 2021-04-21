@@ -1,7 +1,8 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_listing,        only: [:show, :edit, :update]
-  before_action :move_to_new,        only: :edit
+  before_action :move_to_new,        only: [:edit, :update]
+  before_action :move_to_index,      only: [:edit, :update]
 
   def index
     @listings = Listing.all.order('created_at DESC')
@@ -55,6 +56,12 @@ class ListingsController < ApplicationController
   def move_to_new
     unless user_signed_in?
       redirect_to action: :new
+    end
+  end
+
+  def move_to_index
+    unless current_user.id != @listing.user.id
+      redirect_to action: :index
     end
   end
 end
