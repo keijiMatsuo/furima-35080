@@ -1,5 +1,9 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_listing,        only: [:show, :edit, :update]
+  before_action :move_to_new,        only: [:edit, :update]
+  before_action :move_to_index,      only: [:edit, :update]
+
   def index
     @listings = Listing.all.order('created_at DESC')
   end
@@ -18,7 +22,23 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id])
+    
+  end
+
+  def edit
+    if current_user.id == @listing.user.id
+      render :edit
+    else
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if @listing.update(listing_params)
+      redirect_to listing_path(@listing)
+    else
+      render :edit
+    end
   end
 
   private
@@ -27,5 +47,21 @@ class ListingsController < ApplicationController
     params.require(:listing).permit(:image, :product_name, :description, :category_id, :status_id, :shipping_burden_id,
                                     :prefectures_id, :shipping_days_id, :price)
           .merge(user_id: current_user.id)
+  end
+
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
+
+  def move_to_new
+    unless user_signed_in?
+      redirect_to action: :new
+    end
+  end
+
+  def move_to_index
+    unless current_user.id != @listing.user.id
+      redirect_to action: :index
+    end
   end
 end
