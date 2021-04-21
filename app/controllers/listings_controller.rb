@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_listing,        only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index,      only: [:update, :destroy]
+  before_action :move_to_index,      only: [:edit, :update, :destroy]
 
   def index
     @listings = Listing.all.order('created_at DESC')
