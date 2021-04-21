@@ -40,11 +40,8 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    if @listing.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    @listing.destroy
+    redirect_to root_path
   end
 
   private
