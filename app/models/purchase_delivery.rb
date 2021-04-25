@@ -6,11 +6,11 @@ class PurchaseDelivery
     validates :user_id
     validates :listing_id
     validates :token
-    validates :postal_code, format:{with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :postal_code,    format:{with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :prefectures_id, numericality:{other_than: 1, message: "can't be blank"}
     validates :municipality
     validates :address
-    validates :phone_number
+    validates :phone_number,   format:{with: /\A[0-9]+\z/}, numericality:{only_integer: true}
   end
 
   def save
