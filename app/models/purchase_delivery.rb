@@ -10,7 +10,7 @@ class PurchaseDelivery
     validates :prefectures_id, numericality:{other_than: 1, message: "can't be blank"}
     validates :municipality
     validates :address
-    validates :phone_number,   format:{with: /\A[0-9]+\z/}, numericality:{only_integer: true}
+    validates :phone_number,   format:{with: /\A[0-9]+\z/}
   end
 
   def save

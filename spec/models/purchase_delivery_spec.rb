@@ -56,9 +56,9 @@ RSpec.describe PurchaseDelivery, type: :model do
         expect(@purchase_delivery.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberが半角数字でないと購入できない' do
-        @purchase_delivery.phone_number = '０９０１２３４５６７８'
+        @purchase_delivery.phone_number = '１９０１２３４５６７８'
         @purchase_delivery.valid?
-        expect(@purchase_delivery.errors.full_messages).to include("Phone number is not a number")
+        expect(@purchase_delivery.errors.full_messages).to include("Phone number is invalid")
       end
       it 'userが紐付いていないと購入できない' do
         @purchase_delivery.user_id = nil
