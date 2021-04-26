@@ -4,7 +4,6 @@ class PurchasesController < ApplicationController
   before_action :move_to_index,      only: [:index, :create]
 
   def index
-    redirect_to root_path if current_user.id == @listing.user.id
     @purchase_delivery = PurchaseDelivery.new
   end
 
@@ -41,6 +40,6 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if @listing.purchase.present?
+    redirect_to root_path if current_user.id == @listing.user.id || @listing.purchase.present?
   end
 end
