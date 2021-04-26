@@ -16,7 +16,7 @@ RSpec.describe PurchaseDelivery, type: :model do
       it 'building_nameは空でも購入できる' do
         @purchase_delivery.building_name = ''
         expect(@purchase_delivery).to be_valid
-      end  
+      end
     end
 
     context '商品を購入できない' do
@@ -29,27 +29,27 @@ RSpec.describe PurchaseDelivery, type: :model do
         @purchase_delivery.postal_code = ''
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Postal code can't be blank")
-      end  
+      end
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと購入できない' do
         @purchase_delivery.postal_code = '1234567'
         @purchase_delivery.valid?
-        expect(@purchase_delivery.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
-      end  
+        expect(@purchase_delivery.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+      end
       it 'prefecturesを選択しなければ購入できない' do
         @purchase_delivery.prefectures_id = 1
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Prefectures can't be blank")
-      end  
+      end
       it 'municipalityが空では購入できない' do
         @purchase_delivery.municipality = ''
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Municipality can't be blank")
-      end  
+      end
       it 'addressが空では購入できない' do
         @purchase_delivery.address = ''
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Address can't be blank")
-      end  
+      end
       it 'phone_numberが空では購入できない' do
         @purchase_delivery.phone_number = ''
         @purchase_delivery.valid?
@@ -58,18 +58,18 @@ RSpec.describe PurchaseDelivery, type: :model do
       it 'phone_numberが半角数字でないと購入できない' do
         @purchase_delivery.phone_number = '１９０１２３４５６７８'
         @purchase_delivery.valid?
-        expect(@purchase_delivery.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_delivery.errors.full_messages).to include('Phone number is invalid')
       end
       it 'userが紐付いていないと購入できない' do
         @purchase_delivery.user_id = nil
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("User can't be blank")
-      end  
+      end
       it 'listingが紐付いていないと購入できない' do
         @purchase_delivery.listing_id = nil
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include("Listing can't be blank")
-      end  
+      end
     end
   end
 end

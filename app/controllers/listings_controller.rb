@@ -21,7 +21,6 @@ class ListingsController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
