@@ -63,12 +63,12 @@ RSpec.describe PurchaseDelivery, type: :model do
       it 'phone_numberが11桁以内でないと購入できない' do
         @purchase_delivery.phone_number = '111111111111'
         @purchase_delivery.valid?
-        expect(@purchase_delivery.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        expect(@purchase_delivery.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
       it 'phone_numberが英数混合では購入できない' do
         @purchase_delivery.phone_number = '1a1a1a1a1a1'
         @purchase_delivery.valid?
-        expect(@purchase_delivery.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_delivery.errors.full_messages).to include('Phone number is invalid')
       end
       it 'userが紐付いていないと購入できない' do
         @purchase_delivery.user_id = nil
