@@ -57,6 +57,6 @@ class ListingsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index if current_user.id != @listing.user.id
+    redirect_to action: :index if current_user.id != @listing.user.id || @listing.purchase.present?
   end
 end
